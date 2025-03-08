@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>致最爱的妈妈 - 三八节快乐</title>
+    <title>致最爱的妈妈 - 三八妇女节快乐</title>
     <style>
         * {
             margin: 0;
@@ -16,65 +16,129 @@
             font-family: '微软雅黑', cursive;
             background: linear-gradient(135deg, #ffe6e6, #ffb3d9);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow-x: hidden;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* 优化后的心形容器 */
-        .heart-container {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px;
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 50px auto;
         }
 
-        /* 标准心形实现 */
-        .heart {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            cursor: pointer;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+        h1 {
+            color: #ff3366;
+            font-size: 2.8em;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        .heart::before,
-        .heart::after {
-            content: '';
+        p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #666;
+            margin: 20px 0;
+            padding: 0 15px;
+        }
+
+        .highlight {
+            color: #ff3366;
+            font-weight: bold;
+        }
+
+        .flowers {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .flower {
+            width: 80px;
+            height: 80px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ff69b4" d="M12 2.13l2.24 5.33 5.63.47-4.24 3.56 1.24 5.47L12 15.4l-4.87 2.56 1.24-5.47-4.24-3.56 5.63-.47z"/></svg>');
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .border-deco {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: #ff3366;
-            border-radius: 50px 50px 0 0;
+            top: 0;
+            left: 0;
+            border: 3px solid #ff3366;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="border-deco"></div>
+        <h1>❤️ 亲爱的妈妈 ❤️</h1>
+        
+        <div class="flowers">
+            <div class="flower"></div>
+            <div class="flower" style="animation-delay: 0.6s"></div>
+            <div class="flower" style="animation-delay: 1.2s"></div>
+        </div>
+
+        <p>您用温暖的怀抱为我遮风挡雨</p>
+        <p>用无私的爱浇灌我成长</p>
+        <p>时光荏苒，唯母爱永恒</p>
+        <p class="highlight">在这个特别的日子里</p>
+        <p class="highlight">祝您三八妇女节快乐！</p>
+        <p>愿幸福与健康常伴您左右</p>
+    </div>
+
+    <script>
+        // 自动生成花瓣效果
+        function createPetals() {
+            const colors = ['#ffb3d9', '#ff66b3', '#ff9999'];
+            for(let i = 0; i < 50; i++) {
+                const petal = document.createElement('div');
+                petal.style.cssText = `
+                    position: fixed;
+                    width: ${Math.random()*10+8}px;
+                    height: ${Math.random()*10+8}px;
+                    background: ${colors[Math.floor(Math.random()*3)]};
+                    opacity: ${Math.random()*0.5+0.5};
+                    border-radius: 50%;
+                    animation: fall ${Math.random()*5+5}s linear infinite;
+                    left: ${Math.random()*100}vw;
+                    z-index: 999;
+                    pointer-events: none;
+                `;
+                document.body.appendChild(petal);
+            }
         }
 
-        .heart::before {
-            transform: rotate(-45deg);
-            left: 25px;
-        }
+        // 花瓣动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(-10vh) rotate(0deg); }
+                100% { transform: translateY(110vh) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
 
-        .heart::after {
-            transform: rotate(45deg);
-            right: 25px;
-            filter: drop-shadow(-2px -2px 4px rgba(255, 51, 102, 0.5));
-        }
-
-        @keyframes heartbeat {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-            15% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-            30% { transform: translate(-50%, -50%) scale(1.05); }
-            45% { transform: translate(-50%, -50%) scale(1.15); }
-            60% { transform: translate(-50%, -50%) scale(1); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
+        // 页面加载后自动创建花瓣
+        window.addEventListener('DOMContentLoaded', createPetals);
+    </script>
+</body>
+</html>
 
         .message {
             opacity: 0;
@@ -133,7 +197,7 @@
         </div>
 
         <div class="message">
-            <h1>❤️ 亲爱的妈妈 ❤️</h1>
+            <h1>❤️亲爱的妈妈❤️</h1>
             <div class="flowers">
                 <div class="flower"></div>
                 <div class="flower" style="animation-delay: 0.5s"></div>
