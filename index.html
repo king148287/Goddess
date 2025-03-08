@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三八女神节快乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(45deg, #ff7eb3, #ff758c);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .blessing {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #666;
+            margin: 2rem 0;
+            line-height: 2;
+        }
+        .feature-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .flower {
+            position: fixed;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1> 三八女神节快乐 </h1>
+        <p>致敬每一个发光的妳</p>
+    </div>
+    <div class="container">
+        <div class="blessing">
+            <p>愿妳眼里总有光芒<br>
+            手中总有鲜花<br>
+            成为自己的太阳<br>
+            节日快乐！</p>
+        </div>
+        <div class="feature-section">
+            <div class="card">
+                <h2>专属福利</h2>
+                <p> 女神专属优惠礼包</p>
+                <p> 精美礼品免费领取</p>
+                <p> 节日限定课程优惠</p>
+            </div>
+            <div class="card">
+                <h2>精彩活动</h2>
+                <p> 手工艺制作体验</p>
+                <p> 美妆沙龙</p>
+                <p> 女性成长讲座</p>
+            </div>
+            <div class="card">
+                <h2>暖心祝福</h2>
+                <p>留下你的祝福语<br>
+                我们将精选展示</p>
+                <button onclick="showBlessForm()">立即祝福</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 花瓣飘落效果
+        document.addEventListener('click', function(e) {
+            const colors = ['#ff7eb3', '#ff758c', '#ff6b6b', '#ff9aa2'];
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = e.pageX + 'px';
+            flower.style.top = e.pageY + 'px';
+            flower.style.color = colors[Math.floor(Math.random() * colors.length)];
+            flower.innerHTML = '';
+            document.body.appendChild(flower);
+            setTimeout(() => {
+                flower.remove();
+            }, 2000);
+        });
+        function showBlessForm() {
+            const form = prompt("请写下您的祝福语：");
+            if (form) {
+                alert("感谢您的祝福！我们将会尽快展示！");
+            }
+        }
+        // 自动播放音乐（可选）
+        window.addEventListener('load', function() {
+            const audio = new Audio('https://example.com/happy-music.mp3');
+            audio.loop = true;
+            // audio.play(); // 取消注释需要时
+        });
+    </script>
+</body>
+</html>
