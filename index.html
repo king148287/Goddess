@@ -1,246 +1,219 @@
-<doubaocanvas
-  identifier="love-confession-optimized"
-  type="webview"
-  title="优化后的专属告白网页代码"
->
-  <doubaocanvas-part
-    language="html"
-    path="love_confession.html"
-    description="优化后的专属告白网页代码"
-  >
-    <!doctype html>
-    <html lang="zh">
-      <head>
-        <meta charset="UTF-8" />
-        <title>给琳的专属告白</title>
-        <style>
-          body {
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>给琳的专属告白</title>
+    <style>
+        body {
             margin: 0;
             height: 100vh;
-            background: linear-gradient(135deg, #ffb3e6 0%, #ff99cc 100%);
-            font-family: "楷体", cursive;
+            background: linear-gradient(135deg, #ff9de2 0%, #e0b3ff 100%);
+            font-family: '楷体', cursive;
             overflow: hidden;
-            position: relative;
-          }
-          .sakura {
-            position: absolute;
-            color: #ffb3e6;
-            font-size: 24px;
-            animation: fall 8s linear infinite;
-            opacity: 0.8;
-          }
-          @keyframes fall {
-            0% {
-              transform: translateY(-10vh) rotate(0deg);
-            }
-            100% {
-              transform: translateY(110vh) rotate(360deg);
-            }
-          }
-          .container {
+            transition: background 1s ease;
+        }
+
+        .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 1;
-          }
-          .title {
+        }
+
+        .title {
             text-align: center;
             font-size: 3em;
-            color: #ff4d94;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: fadeIn 2s;
             margin-top: 50px;
-          }
-          .love-letter {
-            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 15px;
             margin: 40px 0;
-            box-shadow: 0 0 30px rgba(255, 77, 148, 0.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             transform: rotate(-2deg);
             animation: slideUp 1.5s ease-out;
-            border: 3px solid #ffb3e6;
-          }
-          .photo-wall {
-            display: none;
-            margin-top: 30px;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-          }
-          .photo-frame {
-            width: 180px;
-            height: 240px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(255, 77, 148, 0.3);
-            background: #fff0f6;
-            padding: 8px;
-            border: 2px solid #ff99cc;
-            position: relative;
-            transform: scale(0);
-            animation: photoAppear 0.6s ease-out forwards;
-          }
-          .photo-frame::before {
-            content: "";
+        }
+
+        .heart {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #ff99cc, #ff4d94);
-            z-index: -1;
-            border-radius: 18px;
-            opacity: 0.3;
-          }
-          .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-          }
-          .photo-frame:hover img {
-            transform: scale(1.05);
-          }
-          #secret-button {
-            background: linear-gradient(135deg, #ff4d94, #ff99cc);
+            color: #ff3f6c;
+            font-size: 24px;
+            animation: float 3s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px) rotate(-2deg); opacity: 0; }
+            to { transform: translateY(0) rotate(-2deg); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .interactive-area {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #secret-button {
+            background: #ff69b4;
             color: white;
             border: none;
             padding: 15px 30px;
-            border-radius: 30px;
+            border-radius: 25px;
             font-size: 1.2em;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
             position: relative;
             overflow: hidden;
-          }
-          #secret-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 77, 148, 0.5);
-          }
-          #secret-button::after {
+        }
+
+        #secret-button:hover {
+            transform: scale(1.05);
+            background: #ff1493;
+            box-shadow: 0 6px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        #secret-button::after {
             content: "";
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-              45deg,
-              transparent,
-              rgba(255, 255, 255, 0.3),
-              transparent
-            );
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transform: rotate(45deg);
-            animation: btnShine 2s infinite;
-          }
-          @keyframes btnShine {
-            0% {
-              transform: translateX(-100%) rotate(45deg);
-            }
-            100% {
-              transform: translateX(100%) rotate(45deg);
-            }
-          }
-          .hidden-message {
-            color: #ff4d94;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-          }
-          @keyframes photoAppear {
-            from {
-              transform: scale(0) rotate(-15deg);
-            }
-            to {
-              transform: scale(1) rotate(0);
-            }
-          }
-          @keyframes heartbeat {
-            0% {
-              transform: scale(1);
-            }
-            15% {
-              transform: scale(1.3);
-            }
-            30% {
-              transform: scale(1);
-            }
-            45% {
-              transform: scale(1.15);
-            }
-            60% {
-              transform: scale(1);
-            }
-          }
-          .heartbeat {
-            animation: heartbeat 1.5s infinite;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="sakura">🌸</div>
-        <div class="sakura">🌸</div>
-        <div class="sakura">🌸</div>
-        <div class="container">
-          <div class="interactive-area">
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #6a1b9a;
+            animation: fadeIn 1s;
+        }
+
+        .spark {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">💖 致我最爱的琳 💖</h1>
+        
+        <div class="love-letter">
+            <p>亲爱的琳：</p>
+            <p>在万千星辰中，你的笑容是最耀眼的那一颗。</p>
+            <p>自从遇见你，每个清晨都充满期待，每个黄昏都值得珍藏。</p>
+            <p>你温柔的眼眸是我心灵的港湾，你清脆的笑声是世间最美的乐章。</p>
+            <p>愿以余生为笺，时光为墨，书写属于我们的诗篇。</p>
+            <p style="text-align: right;">永远爱你 </p>
+        </div>
+
+        <div class="interactive-area">
             <button id="secret-button">点击查看我们的秘密</button>
             <div id="special-message" class="hidden-message">
-              <p>🎵 你是我心中的日月，永远闪耀 🎵</p>
-              <p>💌献祭那天的月亮，不及你万分之一的纯洁 💌</p>
+                <p>🎵 你是我心中的日月，永远闪耀 🎵</p>
+                <p>💌 冬夜的雪，不及你万分之一的纯洁 💌</p>
             </div>
-            <div id="photo-wall" class="photo-wall">
-              <div class="photo-frame heartbeat">
-                < img src="https://i.ibb.co/xtLSD4hZ/IMG-20250314-153225.jpg"
-                alt="献祭">
-              </div>
-              <div class="photo-frame heartbeat">
-                < img src="https://i.ibb.co/KcTbWwHr/IMG-20250314-153312.jpg"
-                alt="甜蜜时刻梦境">
-              </div>
-              <div class="photo-frame heartbeat">
-                < img src="https://i.ibb.co/qL3SwW6b/IMG-20250314-153458.jpg"
-                alt="甜蜜时刻梦境">
-              </div>
-            </div>
-          </div>
         </div>
-        <script>
-          const secretButton = document.getElementById('secret-button');
-          const specialMessage = document.getElementById('special-message');
-          const photoWall = document.getElementById('photo-wall');
+    </div>
 
-          function createSakura() {
-              const sakura = document.createElement('div');
-              sakura.className = 'sakura';
-              sakura.innerHTML = ['🌸', '🎀', '💮'][Math.floor(Math.random() * 3)];
-              sakura.style.left = Math.random() * 100 + 'vw';
-              sakura.style.animationDuration = Math.random() * 3 + 5 + 's';
-              sakura.style.fontSize = Math.random() * 20 + 20 + 'px';
-              document.body.appendChild(sakura);
-              setTimeout(() => sakura.remove(), 8000);
-          }
-          setInterval(createSakura, 1500);
+    <script>
+        let isLoading = false;
+        const maxHearts = 30;
+        let heartsCount = 0;
 
-          secretButton.addEventListener('click', function () {
-              specialMessage.style.display = 'block';
-              photoWall.style.display = 'flex';
-              this.innerHTML = '🎁 惊喜持续加载中...';
-              document.body.style.background = 'linear-gradient(135deg, #ff85d6 0%, #d89cff 100%)';
-              this.style.transform = 'rotateY(360deg)';
-              this.style.transition = 'transform 1s';
-              setTimeout(() => {
-                  const photoFrames = document.querySelectorAll('.photo-frame');
-                  photoFrames.forEach((frame, index) => {
-                      setTimeout(() => {
-                          frame.style.animation = `photoAppear 0.6s ease-out ${index * 0.2}s forwards`;
-                      }, 100);
-                  });
-              }, 500);
-          });
-        </script>
-      </body>
-    </html>
-  </doubaocanvas-part>
-</doubaocanvas>
+        // 优化后的爱心雨效果
+        function createHeart() {
+            if (heartsCount >= maxHearts) return;
+            
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+            heart.style.opacity = (Math.random() * 0.5) + 0.5;
+            document.body.appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+                heartsCount--;
+            });
+
+            heartsCount++;
+        }
+
+        setInterval(createHeart, 500);
+
+        // 按钮交互优化
+        document.getElementById('secret-button').addEventListener('click', function() {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const message = document.getElementById('special-message');
+            message.style.display = 'block';
+            this.innerHTML = '🎁 惊喜加载中...';
+            this.disabled = true;
+
+            // 背景渐变动画
+            document.body.style.background = 'linear-gradient(135deg, #ff85d6 0%, #d89cff 100%)';
+            
+            // 按钮3D旋转效果
+            this.style.transform = 'rotateY(360deg)';
+            this.style.transition = 'transform 1s';
+
+            setTimeout(() => {
+                this.innerHTML = '🎉 加载完成！';
+                this.disabled = false;
+                isLoading = false;
+            }, 2000);
+        });
+
+        // 点击特效优化
+        document.body.addEventListener('click', function(e) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            spark.innerHTML = ['✨', '🌸', '🎇'][Math.floor(Math.random()*3)];
+            document.body.appendChild(spark);
+
+            spark.style.opacity = 1;
+            spark.style.transform = 'scale(1)';
+
+            setTimeout(() => {
+                spark.style.opacity = 0;
+                spark.style.transform = 'scale(0)';
+                setTimeout(() => spark.remove(), 300);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
